@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Web Cryptography API Developer Mistakes: Demonstrators</title>
+
+    <link href="dist/spectre.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body class="container grid-lg">
+    <h1>Web Cryptography API Developer Mistakes: Demonstrators</h1>
+    <p>
+      This repository contains demonstrators for the mistakes presented in our paper:
+      P. Wichmann, M. Blochberger, H. Federrath: For Better or Worse? Analyzing Use and Possible Misuse of the Web
+      Cryptography API.<br />
+      ARES 2022, August 23–26, 2022, Vienna, Austria.<br />
+      <a href="https://doi.org/10.1145/3538969.3538977">https://doi.org/10.1145/3538969.3538977</a>
+    </p>
+
+    <ul>
+      <li>
+        <strong>Missing or Improper Handling of Disabled JavaScript</strong>
+        <ul>
+          <li><a href="disabled-script-execution/disabled-js-encrypted-form-submission/"
+                 target="_blank">Completely Disabled JavaScript execution: Form onsubmit Hook</a></li>
+          <li><a href="disabled-script-execution/partially-disabled-js-encrypted-form-hook/"
+                 target="_blank">Partially Disabled JavaScript execution: Form onsubmit Hook</a></li>
+          <li><a href="disabled-script-execution/canceled-script-insecure-temporary-storage/"
+                 target="_blank">Script Cancelation: Using Insecure Persistent Storage</a></li>
+        </ul>
+      </li>
+      <li>
+        <strong>Improper Handling of Browser State</strong>
+        <ul>
+          <li><a href="browser-state/unhandled-history-navigation/"
+                 target="_blank">Unhandled History Navigation</a>
+            <!-- does not support firefox, because firefox does not properly reload the page after history navigation //-->
+          </li>
+          <li><a href="browser-state/unhandled-history-navigation"
+                 target="_blank">Unhandled Multiple Instances</a></li>
+          <li><a href="browser-state/incompatible-script-versions/"
+                 target="_blank">Inconsistent Application Files/Incompatible Script Versions</a></li>
+          <li><a href="browser-state/override-api-operation/"
+                 target="_blank">Globally Overriding Browser API Operations</a></li>
+          <li><a href="browser-state/missing-support-for-shared-devices/"
+                 target="_blank">Missing Support for Shared Devices</a></li>
+        </ul>
+      </li>
+      <li>
+        <strong>Insecure Storage or Transmission of Sensitive Information</strong>
+        <ul>
+          <li><a href="insecure-storage-transmission/insecure-input/"
+                 target="_blank">Insecure Input Fields</a></li>
+          <li><a href="browser-state/unhandled-history-navigation"
+                 target="_blank">Insecure Temporary Storage</a></li>
+          <li><a href="insecure-storage-transmission/sensitive-data-in-urls/"
+                 target="_blank">Storing Sensitive Information in URLs</a></li>
+          <li><a href="insecure-storage-transmission/sensitive-data-in-cookies/"
+                 target="_blank">Storing Sensitive Information in Cookies</a></li>
+          <li><a href="insecure-storage-transmission/insecure-key-transmission/"
+                 target="_blank">Insecure Transmission of Key Material</a></li>
+        </ul>
+      </li>
+    </ul>
+  </body>
+</html>

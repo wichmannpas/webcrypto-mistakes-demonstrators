@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Storing Sensitive Information in Cookies</title>
+
+    <style type="text/css">
+        .hidden {
+            display: none !important;
+        }
+    </style>
+    <link href="../../dist/spectre.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../dist/spectre-icons.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body class="container grid-md">
+    <h1>
+      Storing Sensitive Information in Cookies
+    </h1>
+    <p>
+      This example demonstrates the problem of storing sensitive information, such as key material, in cookies.
+    </p>
+    <div class="accordion">
+      <input hidden id="explanation" name="accordion-checkbox" type="checkbox">
+      <label class="accordion-header"
+             for="explanation">
+        <i class="icon icon-arrow-right mr-1"></i>
+        Explanation of the Mistake(s)
+      </label>
+      <div class="accordion-body">
+        <p>
+          The cryptographic key is stored in a cookie. Cookies are sent to the server upon <em>every</em> request,
+          which means that the secret key is accidentally shared with the server.
+        </p>
+      </div>
+    </div>
+    <div class="accordion">
+      <input hidden id="mitigation" name="accordion-checkbox" type="checkbox">
+      <label class="accordion-header"
+             for="mitigation">
+        <i class="icon icon-arrow-right mr-1"></i>
+        Mitigation of the Mistake
+      </label>
+      <div class="accordion-body">
+        Do not use cookies to store sensitive information.
+        Data that is supposed to be sent to the server can be sent in the body of a POST request.
+        Data that is to be kept locally can be stored in local script variable or (using appropriate protections)
+        in the localStorage.
+      </div>
+    </div>
+    <p>
+      Current key:&nbsp;<code id="displayKey"></code>
+    </p>
+    <button class="btn btn-primary"
+            id="generateKey">Generate New Private Key
+    </button>
+
+    <script src="../../util.js" type="text/javascript"></script>
+    <script src="main.js" type="text/javascript"></script>
+  </body>
+</html>

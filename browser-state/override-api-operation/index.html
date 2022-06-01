@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Globally Overriding Browser API Operations</title>
+
+    <style>
+        .hidden {
+            display: none !important;
+        }
+    </style>
+    <link href="../../dist/spectre.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../dist/spectre-icons.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body class="container grid-md">
+    <h1>Globally Overriding Browser API Operations</h1>
+    <p>
+      This example demonstrates the problem of globally overriding an operation of the Web Cryptography API.
+    </p>
+    <div class="accordion">
+      <input hidden id="explanation" name="accordion-checkbox" type="checkbox">
+      <label class="accordion-header"
+             for="explanation">
+        <i class="icon icon-arrow-right mr-1"></i>
+        Explanation of the Mistake(s)
+      </label>
+      <div class="accordion-body">
+        <p>
+          The script <code>main.js</code> overrides the <code>generateKey</code> and <code>encrypt</code> operations
+          of the Web Cryptography API, to hard-code the used algorithm and parameters as well as the return
+          value.
+          However, the script <code>third-party.js</code> is executed on the same origin and also makes use of the
+          Web Cryptography API, not expecting such modifications.
+          Thus, the third-party script unexpectedly breaks due to the override by the first party
+        </p>
+        <p>
+          This mistake can also be made by a third-party, breaking the code of the first party.
+          The underlying problem is that overriding any JavaScript object underneath <code>window</code> affects all
+          other scripts running in the same window as well.
+        </p>
+      </div>
+    </div>
+    <div class="accordion">
+      <input hidden id="mitigation" name="accordion-checkbox" type="checkbox">
+      <label class="accordion-header"
+             for="mitigation">
+        <i class="icon icon-arrow-right mr-1"></i>
+        Mitigation of the Mistake
+      </label>
+      <div class="accordion-body">
+        To mitigate this problem, do not override any of the brower's operations.
+        Use a custom wrapper function with a different name instead.
+      </div>
+    </div>
+    <div>
+      <label for="creditCardNumber">
+        Credit Card Number
+      </label>
+      <textarea class="form-input"
+             id="creditCardNumber"
+             name="creditCardNumber"
+             type="text">12345</textarea>
+    </div>
+    <button class="btn btn-primary"
+            id="submit">Generate a Private Key and Encrypt Data
+    </button>
+    <p>
+      Encrypted Data:&nbsp;<code id="dataDisplay"></code>
+    </p>
+
+    <script src="../../util.js" type="text/javascript"></script>
+    <script src="main.js" type="text/javascript"></script>
+    <script src="third-party.js" type="text/javascript"></script>
+  </body>
+</html>

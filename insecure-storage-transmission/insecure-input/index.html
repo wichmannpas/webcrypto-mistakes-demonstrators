@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Insecure Input Fields</title>
+
+    <style>
+        .hidden {
+            display: none !important;
+        }
+
+        @font-face {
+            font-family: 'dotsfont';
+            src: url('dotsfont.eot');
+            src: url('dotsfont.eot?#iefix') format('embedded-opentype'),
+            url('dotsfont.woff') format('woff'),
+            url('dotsfont.ttf') format('truetype'),
+            url('dotsfont.svg#dotsfontregular') format('svg');
+        }
+
+        .password-input {
+            // -webkit-text-security: disc;
+            font-family: dotsfont;
+        }
+    </style>
+    <link href="../../dist/spectre.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../dist/spectre-icons.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body class="container grid-md">
+    <h1>Insecure Input Fields</h1>
+    <p>
+      This example demonstrates the problem of using an insecure input field for sensitive values.
+    </p>
+    <div class="accordion">
+      <input hidden id="explanation" name="accordion-checkbox" type="checkbox">
+      <label class="accordion-header"
+             for="explanation">
+        <i class="icon icon-arrow-right mr-1"></i>
+        Explanation of the Mistake(s)
+      </label>
+      <div class="accordion-body">
+        <p>
+          The password that is used for the key wrapping is asked using a regular text field rather than a password
+          field. Thus, the value can usually be seen in plaintext by other users, and additionally may be stored for
+          autocompletion by the browser.
+        </p>
+        <p>
+          This example uses a custom font consisting only of dots. Thus, the password is not readable in the text field.
+          However, the value can still be copied and pasted into another text field, making it readable.
+        </p>
+      </div>
+    </div>
+    <div class="accordion">
+      <input hidden id="mitigation" name="accordion-checkbox" type="checkbox">
+      <label class="accordion-header"
+             for="mitigation">
+        <i class="icon icon-arrow-right mr-1"></i>
+        Mitigation of the Mistake
+      </label>
+      <div class="accordion-body">
+        <p>
+          Always use a field of input type <code>password</code> for passwords or other sensitive information.
+        </p>
+      </div>
+    </div>
+    <div>
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <input class="form-input password-input" id="password" placeholder="Password" type="text">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="message">Message</label>
+        <textarea class="form-input" id="message" placeholder="Message" rows="3"></textarea>
+      </div>
+      <p>
+        <code class="hidden" id="result"></code>
+      </p>
+      <button class="btn"
+              id="encrypt">
+        Encrypt
+      </button>
+      <button class="btn"
+              id="decrypt">
+        Decrypt
+      </button>
+
+      <script src="../../util.js" type="text/javascript"></script>
+      <script src="main.js" type="text/javascript"></script>
+  </body>
+</html>
